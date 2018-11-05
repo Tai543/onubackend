@@ -21,6 +21,6 @@ class Mensaje extends Model
 
     ];
     protected $hidden=[
-
+        'id',
     ];
 }

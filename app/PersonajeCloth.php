@@ -6,5 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class PersonajeCloth extends Model
 {
-    //
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'PerId','ClothId'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'id',
+    ];
+
+
 }

@@ -26,3 +26,6 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('user', 'AuthController@user');
     });
 });
+
+//Route::post('personajes','PersonajeController@store');
+//Route::resource('personajes','PersonajeController');

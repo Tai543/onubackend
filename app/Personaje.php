@@ -22,10 +22,10 @@ class Personaje extends Model
             ,'LowMaterial'
             ,'ShoeCloth'
             ,'ShoeMaterial'
-            ,
+            ,'UserId',
         ];
         protected $hidden=[
-            'UserId'
-            ,
+
+
         ];
 }

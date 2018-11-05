@@ -14,4 +14,4 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('personajes', 'PersonajeController');
+//Route::resource('personajes', 'PersonajeController');

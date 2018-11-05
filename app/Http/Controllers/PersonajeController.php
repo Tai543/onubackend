@@ -1,13 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
-use App\User;
 use App\Personaje;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PersonajeController extends Controller
 {
@@ -79,10 +74,17 @@ class PersonajeController extends Controller
                 ,'UserId'=>$request->UserId
             ]
         );
-        $personaje = $request->personaje();
-        $persojae->save();
-        return response()->json(['message' =>
-            'Successfully inserted']);
+
+        if (auth()->user()->personajes()->save($personaje))
+            return response()->json([
+                'success' => true,
+                'data' => $personaje->toArray()
+            ]);
+        else
+            return response()->json([
+                'success' => false,
+                'message' => 'Personaje could not be added'
+            ], 500);
     }
 
     /**

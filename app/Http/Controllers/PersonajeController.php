@@ -13,8 +13,11 @@ class PersonajeController extends Controller
      */
     public function index()
     {
-        //
-        return 'hola desde personaje controller wuu';
+        $personaje = auth()->user()->personajes;
+        return response()->json([
+            'success' => true,
+            'data' => $personaje
+        ]);
     }
 
     /**
@@ -25,6 +28,7 @@ class PersonajeController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -37,7 +41,7 @@ class PersonajeController extends Controller
     {
         //
         if (!is_array($request->all())) {
-            return ['error' => 'request must be an array'];
+            return ['error' => 'request debe ser un array'];
         }
         $request->validate([
             /* ATRIBUTOS DESESTIMADOS 2018_11_6
@@ -86,7 +90,7 @@ class PersonajeController extends Controller
         else
             return response()->json([
                 'success' => false,
-                'message' => 'Personaje could not be added'
+                'message' => 'Personaje no se pudo insertar'
             ], 500);
     }
 
@@ -99,6 +103,17 @@ class PersonajeController extends Controller
     public function show($id)
     {
         //
+        $personaje = auth()->user()->products()->find($id);
+        if (!$personaje) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Personaje con id ' . $id . ' no encontrado'
+            ], 400);
+        }
+        return response()->json([
+            'success' => true,
+            'data' => $product->toArray()
+        ], 400);
     }
 
     /**

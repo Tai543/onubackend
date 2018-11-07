@@ -32,6 +32,6 @@ class User extends Authenticatable
 
     public function personajes()
     {
-        return $this->hasMany(Personaje::class);
+        return $this->hasMany(Personaje::class,'UserId','user_id');
     }
 }

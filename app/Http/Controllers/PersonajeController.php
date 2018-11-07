@@ -13,8 +13,11 @@ class PersonajeController extends Controller
      */
     public function index()
     {
-        //
-        return 'hola desde personaje controller wuu';
+        $personaje = auth()->user()->personajes;
+        return response()->json([
+            'success' => true,
+            'data' => $personaje
+        ]);
     }
 
     /**
@@ -25,6 +28,7 @@ class PersonajeController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -37,41 +41,44 @@ class PersonajeController extends Controller
     {
         //
         if (!is_array($request->all())) {
-            return ['error' => 'request must be an array'];
+            return ['error' => 'request debe ser un array'];
         }
         $request->validate([
-             'NickPublico'=>'required'
-            ,'Nombre'=>'required'
-            ,'Genero'=>'required'
-            ,'SkinMaterial'=>'required'
-            ,'BagMaterial'=>'required'
-            ,'HairCloth'=>'required'
-            ,'HairMaterial'=>'required'
-            ,'UpCloth'=>'required'
-            ,'UpMaterial'=>'required'
-            ,'LowCloth'=>'required'
-            ,'LowMaterial'=>'required'
-            ,'ShoeCloth'=>'required'
-            ,'ShoeMaterial'=>'required'
-            ,'UserId'=>'required'
+            /* ATRIBUTOS DESESTIMADOS 2018_11_6
+            'NickPublico'  =>'required'
+            ,'Nombre'       =>'required'
+            ,*/
+             'Genero'       =>'required|string'
+            ,'SkinMaterial' =>'required|integer'
+            ,'BagMaterial'  =>'required|integer'
+            ,'HairCloth'    =>'required|integer'
+            ,'HairMaterial' =>'required|integer'
+            ,'UpCloth'      =>'required|integer'
+            ,'UpMaterial'   =>'required|integer'
+            ,'LowCloth'     =>'required|integer'
+            ,'LowMaterial'  =>'required|integer'
+            ,'ShoeCloth'    =>'required|integer'
+            ,'ShoeMaterial' =>'required|integer'
+            ,'UserId'       =>'required|integer'
             ,
         ]);
         $personaje = new Personaje(
             [
-                'NickPublico'=>$request->NickPublico
+                /*'NickPublico'=>$request->NickPublico
                 ,'Nombre'=>$request->Nombre
-                ,'Genero'=>$request->Genero
-                ,'SkinMaterial'=>$request->SkinMaterial
-                ,'BagMaterial'=>$request->BagMaterial
-                ,'HairCloth'=>$request->HairCloth
-                ,'HairMaterial'=>$request->HairMaterial
-                ,'UpCloth'=>$request->UpCloth
-                ,'UpMaterial'=>$request->UpMaterial
-                ,'LowCloth'=>$request->LowCloth
-                ,'LowMaterial'=>$request->LowMaterial
-                ,'ShoeCloth'=>$request->ShoeCloth
-                ,'ShoeMaterial'=>$request->ShoeMaterial
-                ,'UserId'=>$request->UserId
+                ,*/
+                'Genero'        =>$request->Genero
+                ,'SkinMaterial' =>$request->SkinMaterial
+                ,'BagMaterial'  =>$request->BagMaterial
+                ,'HairCloth'    =>$request->HairCloth
+                ,'HairMaterial' =>$request->HairMaterial
+                ,'UpCloth'      =>$request->UpCloth
+                ,'UpMaterial'   =>$request->UpMaterial
+                ,'LowCloth'     =>$request->LowCloth
+                ,'LowMaterial'  =>$request->LowMaterial
+                ,'ShoeCloth'    =>$request->ShoeCloth
+                ,'ShoeMaterial' =>$request->ShoeMaterial
+                ,'UserId'       =>$request->UserId
             ]
         );
 
@@ -83,7 +90,7 @@ class PersonajeController extends Controller
         else
             return response()->json([
                 'success' => false,
-                'message' => 'Personaje could not be added'
+                'message' => 'Personaje no se pudo insertar'
             ], 500);
     }
 
@@ -96,6 +103,17 @@ class PersonajeController extends Controller
     public function show($id)
     {
         //
+        $personaje = auth()->user()->products()->find($id);
+        if (!$personaje) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Personaje con id ' . $id . ' no encontrado'
+            ], 400);
+        }
+        return response()->json([
+            'success' => true,
+            'data' => $product->toArray()
+        ], 400);
     }
 
     /**

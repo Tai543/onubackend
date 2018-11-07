@@ -28,4 +28,9 @@ class Personaje extends Model
 
 
         ];
+        
+        public function partidas()
+        {
+            return $this->hasMany(Partidas::class,'PerId','Id');
+        }
 }

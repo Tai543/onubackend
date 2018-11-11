@@ -41,12 +41,12 @@ class PartidaController extends Controller
         }
         $request->validate([
             'PerId'         =>'required|integer'
-            'InfluyenteId'  =>'required|integer'
-            'CartacterId'   =>'required|integer'
-            'FlgIni'        =>'required|boolean'
-            'FlgFin'        =>'required|boolean'
-            'Level'         =>'required|integer'
-        ]);  
+            ,'InfluyenteId'  =>'required|integer'
+            ,'CartacterId'   =>'required|integer'
+            ,'FlgIni'        =>'required|boolean'
+            ,'FlgFin'        =>'required|boolean'
+            ,'Level'         =>'required|integer'
+        ]);
 
     }
 

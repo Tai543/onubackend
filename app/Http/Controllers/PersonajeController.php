@@ -48,18 +48,18 @@ class PersonajeController extends Controller
             'NickPublico'  =>'required'
             ,'Nombre'       =>'required'
             ,*/
-             'Genero'       =>'required|string'
-            ,'SkinMaterial' =>'required|integer'
-            ,'BagMaterial'  =>'required|integer'
-            ,'HairCloth'    =>'required|integer'
-            ,'HairMaterial' =>'required|integer'
-            ,'UpCloth'      =>'required|integer'
-            ,'UpMaterial'   =>'required|integer'
-            ,'LowCloth'     =>'required|integer'
-            ,'LowMaterial'  =>'required|integer'
-            ,'ShoeCloth'    =>'required|integer'
-            ,'ShoeMaterial' =>'required|integer'
-            ,'UserId'       =>'required|integer'
+             'Genero'       =>'required'
+            ,'SkinMaterial' =>'required'
+            ,'BagMaterial'  =>'required'
+            ,'HairCloth'    =>'required'
+            ,'HairMaterial' =>'required'
+            ,'UpCloth'      =>'required'
+            ,'UpMaterial'   =>'required'
+            ,'LowCloth'     =>'required'
+            ,'LowMaterial'  =>'required'
+            ,'ShoeCloth'    =>'required'
+            ,'ShoeMaterial' =>'required'
+            ,'UserId'       =>'required'
             ,
         ]);
         $personaje = new Personaje(
@@ -82,7 +82,7 @@ class PersonajeController extends Controller
             ]
         );
 
-        if (auth()->user()->personajes()->save($personaje))
+        /*if (auth()->user()->personajes()->save($personaje))
             return response()->json([
                 'success' => true,
                 'data' => $personaje->toArray()
@@ -92,6 +92,12 @@ class PersonajeController extends Controller
                 'success' => false,
                 'message' => 'Personaje no se pudo insertar'
             ], 500);
+            */
+            $personaje->save();
+            return response()->json([
+                'success' => true,
+                'data' => $personaje->toArray()], 201);
+
     }
 
     /**

@@ -25,6 +25,7 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
         Route::resource('personaje','PersonajeController');
+        Route::resource('partida','PartidaController');
     });
 });
 

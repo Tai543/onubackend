@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Partida; 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class PartidaController extends Controller
 {
@@ -40,13 +39,28 @@ class PartidaController extends Controller
             return ['error' => 'request must be an array'];
         }
         $request->validate([
-            'PerId'         =>'required|integer'
-            ,'InfluyenteId'  =>'required|integer'
-            ,'CartacterId'   =>'required|integer'
-            ,'FlgIni'        =>'required|boolean'
-            ,'FlgFin'        =>'required|boolean'
-            ,'Level'         =>'required|integer'
+             'PerId'         =>'required'
+            ,'InfluyenteId'  =>'required'
+            ,'CartacterId'   =>'required'
+            ,'FlgIni'        =>'required'
+            ,'FlgFin'        =>'required'
+            ,'Level'         =>'required'
         ]);
+
+        $partida = new Partida (
+            [
+                'PerId'         =>$request->PerId      
+                ,'InfluyenteId'  =>$request->InfluyenteId
+                ,'CartacterId'   =>$request->CartacterId
+                ,'FlgIni'        =>$request->FlgIni     
+                ,'FlgFin'        =>$request->FlgFin     
+                ,'Level'         =>$request->Level      
+            ]);
+
+            $partida->save();
+            return response()->json([
+                'success' => true,
+                'data' => $partida->toArray()], 201);
 
     }
 
